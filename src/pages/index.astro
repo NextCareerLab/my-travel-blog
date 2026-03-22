@@ -1,0 +1,174 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero Section -->
+			<section class="hero">
+				<h1>Explore Jeju Like a Local</h1>
+				<p>Your ultimate guide to Jeju Island — hidden gems, local food, and unforgettable experiences</p>
+				<a href="/blog" class="btn">Read Travel Stories</a>
+			</section>
+
+			<!-- Start Here Section -->
+			<section class="start-section">
+				<h2>Start Planning Your Trip</h2>
+				<div class="card-grid">
+					<a href="/blog" class="card">
+						<div class="card-icon">✈️</div>
+						<h3>Travel Stories</h3>
+						<p>Real experiences from exploring every corner of Jeju Island</p>
+					</a>
+					<a href="/destinations" class="card">
+						<div class="card-icon">🗺️</div>
+						<h3>Destination Guides</h3>
+						<p>Complete guides by area — East, West, South, and North Jeju</p>
+					</a>
+					<a href="/about" class="card">
+						<div class="card-icon">👋</div>
+						<h3>About</h3>
+						<p>The story behind this blog and my love for Jeju Island</p>
+					</a>
+				</div>
+			</section>
+
+			<!-- About Section -->
+			<section class="about-section">
+				<div class="about-text">
+					<h2>Hey, I'm Laf!</h2>
+					<p>
+						I live on Jeju Island and share its hidden beauty with the world.
+						This blog is for travelers who want to experience the real Jeju —
+						beyond the tourist spots.
+					</p>
+					<a href="/about" class="btn-outline">Learn More About Me</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	/* Hero */
+	.hero {
+		text-align: center;
+		padding: 5rem 1rem 4rem;
+		background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+	}
+	.hero h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+		line-height: 1.3;
+	}
+	.hero p {
+		font-size: 1.2rem;
+		color: #555;
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+	.btn {
+		display: inline-block;
+		background: var(--accent);
+		color: white;
+		padding: 0.8rem 2rem;
+		border-radius: 30px;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1rem;
+	}
+	.btn:hover {
+		opacity: 0.85;
+	}
+
+	/* Card Grid */
+	.start-section {
+		padding: 4rem 1rem;
+		max-width: 900px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.start-section h2 {
+		font-size: 1.8rem;
+		margin-bottom: 2rem;
+	}
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+	.card {
+		background: #f9f9f9;
+		border: 1px solid #eee;
+		border-radius: 12px;
+		padding: 2rem 1.5rem;
+		text-decoration: none;
+		color: inherit;
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+	.card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+	}
+	.card-icon {
+		font-size: 2.5rem;
+		margin-bottom: 0.8rem;
+	}
+	.card h3 {
+		font-size: 1.1rem;
+		margin-bottom: 0.5rem;
+	}
+	.card p {
+		font-size: 0.9rem;
+		color: #666;
+	}
+
+	/* About Section */
+	.about-section {
+		background: #f0f7f4;
+		padding: 4rem 1rem;
+		text-align: center;
+	}
+	.about-text {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+	.about-text h2 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+	}
+	.about-text p {
+		color: #555;
+		line-height: 1.8;
+		margin-bottom: 1.5rem;
+	}
+	.btn-outline {
+		display: inline-block;
+		border: 2px solid var(--accent);
+		color: var(--accent);
+		padding: 0.7rem 1.8rem;
+		border-radius: 30px;
+		text-decoration: none;
+		font-weight: 600;
+	}
+	.btn-outline:hover {
+		background: var(--accent);
+		color: white;
+	}
+
+	@media (max-width: 720px) {
+		.hero h1 {
+			font-size: 1.8rem;
+		}
+	}
+</style>

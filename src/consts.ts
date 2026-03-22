@@ -1,2 +1,2 @@
-export const SITE_TITLE = "Laf's Travel Guide";
-export const SITE_DESCRIPTION = 'Welcome to Jeju island in Korea!';
+export const SITE_TITLE = 'Jeju Life & Travel';
+export const SITE_DESCRIPTION = 'A local\'s guide to Jeju Island — travel tips, island life, and mindful living.';

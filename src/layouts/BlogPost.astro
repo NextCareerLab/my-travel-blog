@@ -1,14 +1,21 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { headings: { depth: number; slug: string; text: string }[] };
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, headings } = Astro.props;
+
+// 추천 글 가져오기
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter((post) => post.data.title !== title)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <html lang="en">
@@ -17,11 +24,23 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<style>
 			main {
 				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
+				max-width: 1200px;
+				margin: auto;
+				padding: 3em 1em;
+			}
+			.blog-container {
+				display: flex;
+				flex-direction: row-reverse;
+				gap: 4rem;
+				align-items: flex-start;
+			}
+			.content-wrapper {
+				flex: 1;
+				max-width: 720px;
 			}
 			.hero-image {
 				width: 100%;
+				margin-bottom: 2rem;
 			}
 			.hero-image img {
 				display: block;
@@ -30,61 +49,169 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
 				color: rgb(var(--gray-dark));
 			}
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
+				margin-bottom: 2rem;
+				padding: 1rem 0;
 				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
 			}
 			.date {
-				margin-bottom: 0.5em;
+				margin-bottom: 0.5rem;
 				color: rgb(var(--gray));
 			}
-			.last-updated-on {
-				font-style: italic;
+			/* 목차 스타일 */
+			.toc-aside {
+				position: sticky;
+				top: 6rem;
+				width: 240px;
+				display: none;
+			}
+			@media (min-width: 1024px) {
+				.toc-aside { display: block; }
+			}
+			.toc-title {
+				font-size: 0.75rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				color: var(--gray);
+				margin-bottom: 1rem;
+			}
+			.toc-list {
+				list-style: none;
+				padding: 0;
+				border-left: 1px solid #eee;
+			}
+			.toc-item a {
+				display: block;
+				padding: 0.4rem 0 0.4rem 1rem;
+				font-size: 0.85rem;
+				color: var(--gray);
+				text-decoration: none;
+			}
+			.toc-item a:hover {
+				color: var(--accent);
+				border-left: 2px solid var(--accent);
+				margin-left: -1px;
+			}
+
+			/* 카드 스타일 */
+			.author-card {
+				background-color: var(--accent-bg);
+				border-radius: 12px;
+				padding: 2rem;
+				margin: 3rem 0;
+				border: 1px solid #eee;
+			}
+			.author-card h3 {
+				margin-top: 0;
+				font-family: 'Playfair Display', serif;
+			}
+			.related-section {
+				margin-top: 4rem;
+				padding-top: 2rem;
+				border-top: 1px solid #eee;
+			}
+			.related-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 1.5rem;
+				margin-top: 1.5rem;
+			}
+			.related-card-link {
+				text-decoration: none;
+				color: inherit;
+			}
+			.related-card {
+				background: var(--accent-bg);
+				padding: 1.5rem;
+				border-radius: 12px;
+				border: 1px solid transparent;
+				transition: all 0.3s ease;
+				height: 100%;
+			}
+			.related-card:hover {
+				border-color: var(--accent);
+				transform: translateY(-5px);
+			}
+			.related-card h4 {
+				margin: 0 0 0.5rem 0;
+				font-family: 'Playfair Display', serif;
+			}
+			.read-more-text {
+				font-size: 0.8rem;
+				font-weight: bold;
+				color: var(--accent);
 			}
 		</style>
-		  <!-- 기존 메타태그, CSS 등 -->
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9285674627668558"
-       crossorigin="anonymous"></script>
 	</head>
 
 	<body>
 		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+			<div class="blog-container">
+				<aside class="toc-aside">
+					<nav>
+						<p class="toc-title">On this page</p>
+						<ul class="toc-list">
+							{headings.filter(h => h.depth <= 3).map(h => (
+								<li class={`toc-item depth-${h.depth}`}>
+									<a href={`#${h.slug}`}>{h.text}</a>
+								</li>
+							))}
+						</ul>
+					</nav>
+				</aside>
+
+				<div class="content-wrapper">
+					<article>
+						<div class="hero-image">
+							{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
 						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
+						
+						<div class="prose">
+							<div class="title">
+								<div class="date"><FormattedDate date={pubDate} /></div>
+								<h1>{title}</h1>
+								<hr />
+							</div>
+							
+							<slot />
+							
+							<hr /> 
+							
+							<div class="author-card">
+								<div class="author-info">
+									<h3>About the Author: Laf</h3>
+									<p>
+										A data-driven planner based in Jeju Island. 
+										I help people reconnect with their true selves using EEG data and mindfulness. 
+										Currently developing <strong>'Calm Day'</strong> to make self-love a daily habit.
+									</p>
+									<div class="author-links">
+										<a href="/about" class="cta-button">Read My Story</a>
+									</div>
+								</div>
+							</div>
+
+							<section class="related-section">
+								<h3 class="related-title">More from Laf's Journal</h3>
+								<div class="related-grid">
+									{relatedPosts.map((post) => (
+										<a href={`/blog/${post.id}/`} class="related-card-link">
+											<div class="related-card">
+												<h4>{post.data.title}</h4>
+												<p>{post.data.description ? post.data.description.substring(0, 60) + "..." : "Read more about this story."}</p>
+												<span class="read-more-text">Read Post →</span>
+											</div>
+										</a>
+									))}
+								</div>
+							</section>
+						</div>
+					</article>
 				</div>
-			</article>
+			</div>
 		</main>
 		<Footer />
 	</body>

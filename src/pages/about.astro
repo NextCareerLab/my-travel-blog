@@ -1,45 +1,103 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-<Layout
-	title="About Me: Decoding Peace"
-	description="A mathematician's journey from isolation to liberation in Jeju."
-	pubDate={new Date('March 22 2026')}
-	heroImage="/blog-placeholder-about.jpg" 
->
-	<h2>The Outlier in the Data</h2>
-	<p>
-		Harvard’s 75-year study on adult development reached a singular conclusion: 
-		<strong>"Good relationships keep us happier and healthier."</strong> For a long time, I was the outlier in that data. I lost my father and several loved ones to the silent, suffocating trap of loneliness. Their departures left me in a void where I couldn't find the variables to solve my own life.
-	</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 720px;
+				margin: auto;
+				padding: 3em 1em;
+			}
+			.about-intro h2 {
+				font-family: 'Playfair Display', serif;
+				font-style: italic;
+				color: var(--accent);
+				margin-bottom: 2rem;
+			}
+			.value-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2rem;
+				margin: 3rem 0;
+			}
+			.value-item {
+				background: var(--accent-bg);
+				padding: 1.5rem;
+				border-radius: 12px;
+				border: 1px solid #eee;
+			}
+			blockquote {
+				font-family: 'Playfair Display', serif;
+				font-size: 1.5rem;
+				text-align: center;
+				margin: 4rem 0;
+				padding: 2rem;
+				border-top: 1px solid #eee;
+				border-bottom: 1px solid #eee;
+				color: var(--black);
+			}
+			.cta-section {
+				text-align: center;
+				padding: 3rem 0;
+			}
+			.secondary {
+				background-color: transparent !important;
+				color: var(--accent) !important;
+				border: 1px solid var(--accent);
+				margin-left: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="about-intro">
+				<h1>About Me</h1>
+				<h2>"I came to Jeju to survive, and I found a way to connect."</h2>
+				<p>
+					A few years ago, I felt completely isolated—not just from others, but from myself. 
+					I moved to Jeju Island seeking a way to heal, and that's where I discovered the power of 
+					<strong>objectifying my own mind.</strong>
+				</p>
+			</section>
 
-	<h2>The Physics of Distance & The Math of Mind</h2>
-	<p>
-		To survive, I chose <strong>independence</strong>. I moved to Jeju Island, putting physical distance between my traumatic past and my fragile present. In the serene silence of Jeju, I discovered two transformative tools: <strong>Nature and Data.</strong>
-	</p>
-    
-	<p>
-		As a Math major, I started using the <strong>MUSE S</strong> headband to translate my invisible mental chaos into visible EEG data. For the first time, mindfulness wasn't just a "feeling"—it was a measurable optimization process.
-	</p>
+			<section class="core-values">
+				<h3>The Pillars of My Journey</h3>
+				<div class="value-grid">
+					<div class="value-item">
+						<h4>Objectivity (Data)</h4>
+						<p>By using EEG tools like Muse, I stopped 'feeling' the pain and started 'seeing' it as data. This objectivity was the first step toward freedom.</p>
+					</div>
+					<div class="value-item">
+						<h4>Solitude (Jeju)</h4>
+						<p>Jeju's unique environment allowed me to turn my loneliness into a productive solitude, a space where I could finally hear my own voice.</p>
+					</div>
+				</div>
+			</section>
 
-	<h2>From Self-Optimization to Relationship Healing</h2>
-	<p>
-		As I mastered my internal narrative through data-driven meditation, the resentment that had poisoned my life began to melt. I healed the relationship with my mother and reconnected with the world. 
-	</p>
-    <p>
-        I realized a profound truth: <strong>To liberate others, you must first liberate yourself.</strong> My freedom became the blueprint for helping others escape their own prisons of isolation.
-    </p>
+			<section class="mission">
+				<blockquote>
+					"I liberate others through my own freedom. Through my writing and voice, I help people discover their own narrative."
+				</blockquote>
+			</section>
 
-	<div style="background: #f4f4f4; padding: 25px; border-radius: 12px; text-align: center; margin: 40px 0;">
-    <h3 style="margin-bottom: 10px;">Ready to start your own data-driven journey?</h3>
-    <p style="margin-bottom: 20px;">Use my exclusive link to get 15% off your MUSE headband and join the experiment.</p>
-    <a href="https://partnerships.choosemuse.com/2NTTL9B4/M2GJW/?&uid=361&sub4=playideacom" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       style="background: #2c3e50; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block;">
-        Get 15% Off MUSE Now
-    </a>
-</div>
-	</div>
-</Layout>
+			<section class="cta-section">
+				<h3>Join My Journey</h3>
+				<p>Let's move from isolation to connection together.</p>
+				<div class="link-group">
+					<a href="/blog" class="cta-button">Read the Lab Journal</a>
+					<a href="https://brunch.co.kr/@plannerlaf" target="_blank" class="cta-button secondary">Brunch (KR)</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

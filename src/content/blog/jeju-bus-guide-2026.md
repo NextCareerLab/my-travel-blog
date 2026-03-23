@@ -295,15 +295,3 @@ Getting around Jeju by bus is genuinely easier in 2026 than it's ever been — c
 If this guide helped, bookmark it before your trip and share it with whoever sent you the "you absolutely need a car" message. They were wrong.
 
 Watch the full video version on YouTube — I walk through the exact route from the airport to Seogwipo in real time 👇
-
-[YouTube video embed]
-
----
-
-## Related Posts
-
-- The Ultimate Jeju Island Travel Guide for First-Timers
-- 3 Days in Jeju: The Perfect Itinerary
-- Hidden Beaches in Jeju Only Locals Know
-- Jeju's Best Meditation & Mindfulness Spots
-- Living in Jeju: What 6 Months on the Island Taught Me

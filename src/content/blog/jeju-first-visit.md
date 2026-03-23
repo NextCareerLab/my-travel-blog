@@ -2,6 +2,7 @@
 title: 'First Time in Jeju — Everything You Need to Know'
 description: 'A complete first-timer guide to Jeju Island, South Korea'
 pubDate: '2025-01-10'
+heroImage: "/hero-jeju.jpg"
 ---
 
 Jeju Island is South Korea's most beloved travel destination — and for good reason. Volcanic landscapes, crystal-clear beaches, and some of the best seafood you'll ever eat. Here's everything I wish I knew before my first visit.

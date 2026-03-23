@@ -2,7 +2,7 @@
 title: 'What to Eat in Jeju — A Local Food Guide'
 description: 'The essential Jeju food guide — from black pork BBQ to haenyeo seafood'
 pubDate: '2025-03-01'
----
+heroImage: "/hero-jeju.jpg"
 
 Jeju has its own distinct food culture, separate from mainland Korean cuisine. If you visit without eating these dishes, you haven't really experienced the island.
 

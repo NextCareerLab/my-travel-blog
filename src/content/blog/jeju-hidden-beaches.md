@@ -2,6 +2,7 @@
 title: 'The 5 Best Hidden Beaches in Jeju Nobody Talks About'
 description: "Skip the crowded tourist beaches. These are Jeju's secret coastlines."
 pubDate: '2025-02-14'
+heroImage: "/hero-jeju.jpg"
 ---
 
 Everyone goes to Hyeopjae and Hamdeok. They're beautiful — but packed in summer. After spending years on this island, I've found beaches that most tourists never discover.

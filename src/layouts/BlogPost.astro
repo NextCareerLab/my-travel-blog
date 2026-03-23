@@ -208,6 +208,27 @@ const relatedPosts = allPosts
 									))}
 								</div>
 							</section>
+
+<section class="related-section">
+          <h3 class="related-title">More from Laf's Journal</h3>
+          <div class="related-grid">
+              {relatedPosts.map((post) => (
+                  <a href={`/blog/${post.id}/`} class="related-card-link">
+                      ... (카드 내용) ...
+                  </a>
+              ))}
+          </div>
+      </section>
+
+      <section class="newsletter-box">
+          <div class="newsletter-content">
+              <h3>Join the Calm Day Journey</h3>
+              ...
+          </div>
+      </section>
+
+  </article> </div>
+
 						</div>
 					</article>
 				</div>

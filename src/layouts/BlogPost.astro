@@ -10,7 +10,6 @@ type Props = CollectionEntry<'blog'>['data'] & { headings: { depth: number; slug
 
 const { title, description, pubDate, updatedDate, heroImage, headings } = Astro.props;
 
-// 추천 글 가져오기
 const allPosts = await getCollection('blog');
 const relatedPosts = allPosts
   .filter((post) => post.data.title !== title)
@@ -31,21 +30,25 @@ const relatedPosts = allPosts
 			.blog-container {
 				display: flex;
 				flex-direction: row-reverse;
-				gap: 4rem;
+				gap: 3rem;
 				align-items: flex-start;
 			}
 			.content-wrapper {
 				flex: 1;
+				min-width: 0; /* 👈 중요: 이미지가 레이아웃을 뚫고 나가는걸 방지합니다 */
 				max-width: 720px;
 			}
 			.hero-image {
 				width: 100%;
 				margin-bottom: 2rem;
+				border-radius: 12px;
+				overflow: hidden;
 			}
 			.hero-image img {
 				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
+				width: 100%;
+				height: auto;
+				object-fit: cover;
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
@@ -60,14 +63,15 @@ const relatedPosts = allPosts
 				margin-bottom: 0.5rem;
 				color: rgb(var(--gray));
 			}
-			/* 목차 스타일 */
+			/* 목차 스타일 최적화 */
 			.toc-aside {
 				position: sticky;
 				top: 6rem;
-				width: 240px;
+				width: 260px;
 				display: none;
+				flex-shrink: 0;
 			}
-			@media (min-width: 1024px) {
+			@media (min-width: 1150px) {
 				.toc-aside { display: block; }
 			}
 			.toc-title {
@@ -88,6 +92,7 @@ const relatedPosts = allPosts
 				font-size: 0.85rem;
 				color: var(--gray);
 				text-decoration: none;
+				line-height: 1.4;
 			}
 			.toc-item a:hover {
 				color: var(--accent);
@@ -95,7 +100,7 @@ const relatedPosts = allPosts
 				margin-left: -1px;
 			}
 
-			/* 뉴스레터 스타일 */
+			/* 뉴스레터 & 카드 스타일 */
 			.newsletter-box {
 				background-color: #f8fafc;
 				border-radius: 20px;
@@ -143,8 +148,6 @@ const relatedPosts = allPosts
 				background-color: var(--accent);
 				transform: translateY(-2px);
 			}
-
-			/* 저자 카드 스타일 */
 			.author-card {
 				background-color: var(--accent-bg);
 				border-radius: 12px;
@@ -156,8 +159,6 @@ const relatedPosts = allPosts
 				margin-top: 0;
 				font-family: 'Playfair Display', serif;
 			}
-
-			/* 추천 글 스타일 */
 			.related-section {
 				margin-top: 4rem;
 				padding-top: 2rem;

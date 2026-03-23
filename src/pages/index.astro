@@ -27,7 +27,7 @@ const posts = (await getCollection('blog')).sort(
 				padding: 3em 0;
 			}
 
-			/* 히어로 섹션 */
+			/* 히어로 섹션 (Home 전용) */
 			.hero-section {
 				background-color: #fcfcfc;
 				padding: 5rem 2rem;
@@ -48,20 +48,8 @@ const posts = (await getCollection('blog')).sort(
 				color: #4a5568;
 				line-height: 1.8;
 			}
-<section class="hero-section">
-				<h1>I liberate others <br />through my own freedom.</h1>
-				<p class="hero-subtitle">
-					I am <strong>Laf</strong>, a data-driven planner based in Jeju Island. <br />
-					Helping you discover your unique narrative and <br />
-					become the master of your own life through <strong>data and mindfulness</strong>.
-				</p>
-				<div class="cta-buttons">
-					<a href="/about" class="btn-primary">My Story</a>
-					<a href="/blog" class="btn-secondary">Read Blog</a>
-				</div>
-			</section>
-			
-			/* 🟢 버튼 스타일 (강력 적용) */
+
+			/* 버튼 스타일 */
 			.cta-buttons {
 				display: flex !important;
 				gap: 1rem !important;
@@ -130,8 +118,21 @@ const posts = (await getCollection('blog')).sort(
 		</style>
 	</head>
 	<body>
-		<Header /> <main>
-			
+		<Header />
+		<main>
+			<section class="hero-section">
+				<h1>I liberate others <br />through my own freedom.</h1>
+				<p class="hero-subtitle">
+					I am <strong>Laf</strong>, a data-driven planner based in Jeju Island.<br />
+					Helping you discover your unique narrative and <br />become the master of your own life through <strong>data and mindfulness</strong>.
+				</p>
+
+				<div class="cta-buttons">
+					<a href="/about" class="btn-primary">My Story</a>
+					<a href="/blog" class="btn-secondary">Read Blog</a>
+				</div>
+			</section>
+
 			<section class="latest-journals-section">
 				<h2>Latest Journals</h2>
 				<ul>
@@ -149,34 +150,30 @@ const posts = (await getCollection('blog')).sort(
 				</ul>
 			</section>
 
-<section class="newsletter-card" style="margin-top: 8rem; padding: 4rem 2rem; background-color: #f8fafd; border-radius: 30px; text-align: center; max-width: 850px; margin-left: auto; margin-right: auto; border: 1px solid #eef2f7;">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 1rem; color: #1a202c;">Join the Calm Day Journey</h2>
-    <p style="color: #4a5568; line-height: 1.6; margin-bottom: 2.5rem; font-size: 1.05rem;">
-        Get insights on <strong>data-driven mindfulness</strong> and inner peace delivered straight to your inbox.<br />
-        Be the first to hear about new stories and the upcoming <strong>'Calm Day'</strong> project.
-    </p>
+			<section class="newsletter-card" style="margin-top: 8rem; padding: 4rem 2rem; background-color: #f8fafd; border-radius: 30px; text-align: center; max-width: 850px; margin-left: auto; margin-right: auto; border: 1px solid #eef2f7;">
+				<h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 1rem; color: #1a202c;">Join the Calm Day Journey</h2>
+				<p style="color: #4a5568; line-height: 1.6; margin-bottom: 2.5rem; font-size: 1.05rem;">
+					Get insights on <strong>data-driven mindfulness</strong> and inner peace delivered straight to your inbox.<br />
+					Be the first to hear about new stories and the upcoming <strong>'Calm Day'</strong> project.
+				</p>
 
-    <div class="tally-embed-container" style="max-width: 550px; margin: 0 auto; overflow: hidden;">
-        <iframe 
-            data-tally-src="https://tally.so/embed/wbNjgZ?hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-            loading="lazy" 
-            width="100%" 
-            height="150" 
-            frameborder="0" 
-            marginheight="0" 
-            marginwidth="0" 
-            title="Join the Journey Form">
-        </iframe>
-    </div>
+				<div class="tally-embed-container" style="max-width: 550px; margin: 0 auto; overflow: hidden;">
+					<iframe 
+						data-tally-src="https://tally.so/embed/wbNjgZ?hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+						loading="lazy" 
+						width="100%" 
+						height="150" 
+						frameborder="0" 
+						marginheight="0" 
+						marginwidth="0" 
+						title="Join the Journey Form">
+					</iframe>
+				</div>
 
-    <p style="color: #a0aec0; font-size: 0.85rem; margin-top: 1.5rem;">No spam, just mindful stories from Jeju.</p>
-</section>
-
-<script async src="https://tally.so/widgets/embed.js"></script>
-
-<script async src="https://tally.so/widgets/embed.js"></script>
-
-<script async src="https://tally.so/widgets/embed.js"></script>
-
-		</main> <Footer /> </body>
+				<p style="color: #a0aec0; font-size: 0.85rem; margin-top: 1.5rem;">No spam, just mindful stories from Jeju.</p>
+			</section>
+			<script async src="https://tally.so/widgets/embed.js"></script>
+		</main>
+		<Footer />
+	</body>
 </html>

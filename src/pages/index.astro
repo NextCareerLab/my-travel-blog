@@ -6,7 +6,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
-// ❌ import HeaderLink from './HeaderLink.astro';  <-- 이 줄이 있다면 반드시 지워주세요!
+// ⭐️ 에러 해결의 핵심: HeaderLink를 명시적으로 불러와야 합니다! ⭐️
+import HeaderLink from '../components/HeaderLink.astro';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()

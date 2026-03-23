@@ -2,7 +2,7 @@
 title: "The Truth About MUSE S: A Math Major’s 1-Year Data Review"
 description: "Is the MUSE S headband worth it? A technical, data-driven analysis of neurofeedback meditation from Jeju Island."
 pubDate: "March 22 2026"
-heroImage: "hero-jeju.jpg"
+heroImage: "../../assets/hero-jeju.jpg"
 ---
 
 Meditation is often surrounded by vague promises of "inner peace." As a former mathematics major, I struggled with this ambiguity. I didn't want to just *feel* calmer; I wanted to *know* I was calmer. That’s when I turned to the **MUSE S** headband.

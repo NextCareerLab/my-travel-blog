@@ -2,7 +2,7 @@
 title: 'How to Get Around Jeju Without a Car in 2026 (Red Bus, Apps & Local Secrets)'
 description: "A Jeju local's complete guide to riding buses in 2026 — color-coded routes, contactless payment, must-have apps, and tips most travel blogs miss."
 pubDate: '2026-03-22'
-heroImage: "hero-jeju.jpg"
+heroImage: "../../assets/hero-jeju.jpg"
 ---
 
 I remember the first time a friend visited me in Jeju. She'd done everything right — booked a cute guesthouse in Seogwipo, mapped out her itinerary, even packed light. But the moment she landed, she panicked. "Do I really need to rent a car?" she texted me. "Everyone online says I can't survive here without one."

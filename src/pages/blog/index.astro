@@ -6,6 +6,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 
+// 모든 블로그 글을 가져옵니다.
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
@@ -20,10 +21,10 @@ const posts = (await getCollection('blog')).sort(
 			ul { display: flex; flex-wrap: wrap; gap: 2rem; list-style-type: none; margin: 0; padding: 0; }
 			ul li { width: calc(50% - 1rem); }
 			ul li * { text-decoration: none; transition: 0.2s ease; }
-			ul li img { margin-bottom: 0.5rem; border-radius: 12px; }
-			.title { margin: 0; color: rgb(var(--black)); line-height: 1.2; font-family: 'Playfair Display', serif; }
+			ul li img { margin-bottom: 0.5rem; border-radius: 12px; display: block; }
+			.title { margin: 0; color: rgb(var(--black)); line-height: 1.2; font-family: 'Playfair Display', serif; font-size: 1.5rem; }
 			.date { margin: 0; color: rgb(var(--gray)); }
-			ul li a:hover h4 { color: rgb(var(--accent)); }
+			ul li a:hover .title { color: rgb(var(--accent)); }
 			ul a:hover img { box-shadow: var(--box-shadow); }
 			@media (max-width: 720px) {
 				ul { gap: 1rem; }

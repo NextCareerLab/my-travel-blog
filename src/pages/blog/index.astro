@@ -2,16 +2,14 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-// ⚠️ consts 파일도 같은 깊이에 있다면 점 개수를 맞춰줘야 합니다!
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'; 
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
----
 
-// 모든 블로그 글을 가져와서 최신순으로 4개만 보여줍니다.
+// 모든 블로그 글을 가져와서 최신순으로 정렬합니다. (슬라이스 제거하여 전체 목록 노출)
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-).slice(0, 4);
+);
 ---
 
 <!doctype html>
@@ -20,18 +18,10 @@ const posts = (await getCollection('blog')).sort(
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			main {
-				width: 960px; /* 👈 중요: 위쪽 히어로 박스 너비와 정확히 맞춤 */
+				width: 960px;
 				max-width: calc(100% - 2em);
 				margin: auto;
 				padding: 3em 0;
-			}
-			.hero-section {
-				background-color: #fcfcfc;
-				padding: 4rem 2rem;
-				border-radius: 20px;
-				margin-bottom: 4rem;
-				border: 1px solid #eee;
-				text-align: center;
 			}
 			.latest-journals-section h2 {
 				font-family: 'Playfair Display', serif;
@@ -39,29 +29,24 @@ const posts = (await getCollection('blog')).sort(
 				font-size: 1.8rem;
 				text-align: center;
 			}
-			
-			/* 글 목록 그리드 최적화 */
 			ul {
 				display: grid;
-				grid-template-columns: repeat(2, 1fr); /* 정확히 2열 정렬 */
-				gap: 3rem; /* 사진 사이의 시원한 간격 */
+				grid-template-columns: repeat(2, 1fr);
+				gap: 3rem;
 				list-style-type: none;
 				margin: 0;
 				padding: 0;
 			}
 			ul li { width: 100%; }
-			ul li * { text-decoration: none; transition: 0.2s ease; }
-			
-			/* 사진 크기 및 비율 통일 */
+			ul li a { text-decoration: none; }
 			ul li img {
 				width: 100%;
-				aspect-ratio: 16 / 9; /* 👈 중요: 모든 사진 비율을 16:9로 강제 통일 */
-				object-fit: cover; /* 이미지가 찌그러지지 않게 채움 */
+				aspect-ratio: 16 / 9;
+				object-fit: cover;
 				margin-bottom: 1.5rem;
 				border-radius: 16px;
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
 			}
-			
 			.title {
 				margin: 0 0 0.5rem 0;
 				color: rgb(var(--black));
@@ -70,39 +55,21 @@ const posts = (await getCollection('blog')).sort(
 				font-size: 1.4rem;
 			}
 			.date { margin: 0; color: rgb(var(--gray)); font-size: 0.9rem; }
-			
-			/* 호버 효과 */
 			ul li a:hover .title { color: rgb(var(--accent)); }
 			ul li a:hover img {
 				transform: translateY(-8px);
 				box-shadow: 0 12px 24px rgba(0,0,0,0.1);
 			}
-
 			@media (max-width: 720px) {
-				main { width: 100%; padding: 1em; }
-				.hero-section { padding: 2rem 1rem; }
 				ul { grid-template-columns: 1fr; gap: 2rem; }
-				.title { font-size: 1.25rem; }
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<section class="hero-section">
-				<h1>I liberate others <br />through my own freedom.</h1>
-				<p class="hero-subtitle">
-					기획자 라프입니다. 데이터와 마음챙김을 통해 <br />
-					사람들이 자신만의 고유한 서사를 발견하도록 돕습니다.
-				</p>
-				<div class="cta-buttons">
-					<a href="/about" class="btn-primary">My Story</a>
-					<a href="#posts" class="btn-secondary">Read Blog</a>
-				</div>
-			</section>
-
-			<section class="latest-journals-section" id="posts">
-				<h2>Latest Journals</h2>
+			<section class="latest-journals-section">
+				<h2>Lab & Journal</h2>
 				<ul>
 					{
 						posts.map((post) => (

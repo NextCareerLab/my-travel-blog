@@ -80,6 +80,87 @@ const posts = (await getCollection('blog')).sort(
 				main { width: 100%; padding: 1em; }
 				ul { grid-template-columns: 1fr; gap: 2.5rem; }
 			}
+
+/* 버튼 스타일 다시 살리기 */
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-primary {
+    background-color: #55729e; /* 예전 파란색 톤 */
+    color: white !important;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #445b7d;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #55729e !important;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid #55729e;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #f8f9fa;
+}
+
+/* index.astro 내 스타일 추가 */
+.cta-buttons {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px; /* 좀 더 둥글고 세련된 느낌 */
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 120px;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #55729e;
+    color: white !important;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #55729e !important;
+    border: 1px solid #55729e;
+}
+
+/* 모바일에서 버튼이 너무 작아지지 않게 */
+@media (max-width: 600px) {
+    .cta-buttons {
+        flex-direction: row; /* 한 줄 유지 */
+        padding: 0 1rem;
+    }
+    .btn-primary, .btn-secondary {
+        flex: 1; /* 똑같은 너비로 채우기 */
+        font-size: 0.9rem;
+        padding: 0.7rem 0.5rem;
+    }
+}
+
 		</style>
 	</head>
 	<body>

@@ -1,46 +1,69 @@
----
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
----
-
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Lab & Journal</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-	</nav>
-</header>
-
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
+		padding: 0 1.5rem; /* 좌우 여백을 조금 더 줬습니다 */
 		background: white;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.1em;
-	}
-	h2 a {
-		text-decoration: none;
-		font-weight: 700;
+		position: sticky; /* 스크롤 내려도 상단 고정! */
+		top: 0;
+		z-index: 100;
 	}
 	nav {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: space-between; /* 로고와 메뉴를 양 끝으로 */
+		max-width: 960px;
+		margin: 0 auto;
+		height: 70px; /* 헤더 높이 고정 */
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.1rem;
+		white-space: nowrap; /* 로고가 줄바꿈되지 않게 */
+	}
+	h2 a {
+		text-decoration: none;
+		font-weight: 800;
+		color: #1a202c;
+	}
+	.internal-links {
+		display: flex;
+		gap: 0.5rem; /* 메뉴 사이 간격 */
 	}
 	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+		padding: 0.5rem 0.6rem;
+		color: #4a5568;
+		border-bottom: 3px solid transparent;
 		text-decoration: none;
+		font-size: 0.95rem;
+		font-weight: 500;
+		transition: all 0.2s;
 	}
 	nav a.active {
 		border-bottom-color: var(--accent);
+		color: var(--accent);
+	}
+	nav a:hover {
+		color: var(--accent);
+	}
+
+	/* ✅ 모바일 최적화 (720px 이하) */
+	@media (max-width: 720px) {
+		header {
+			padding: 0 1rem;
+		}
+		nav {
+			height: 60px; /* 모바일에서는 살짝 낮게 */
+		}
+		h2 {
+			font-size: 0.95rem; /* 로고 크기 살짝 줄임 */
+		}
+		.internal-links {
+			gap: 0.2rem; /* 메뉴 간격 좁힘 */
+		}
+		nav a {
+			font-size: 0.8rem; /* 메뉴 글자 크기 조정 */
+			padding: 0.4rem 0.4rem;
+		}
 	}
 </style>

@@ -2,7 +2,7 @@
 title: "What to Eat in Jeju — A Local Food Guide"
 description: "Discover the authentic flavors of Jeju, from black pork to fresh seafood."
 pubDate: "2026-03-01"
-heroImage: "/hero-jeju.jpg"
+heroImage: "hero-jeju.jpg"
 ---
 
 (여기에 본문 내용...)

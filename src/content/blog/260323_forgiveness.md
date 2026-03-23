@@ -4,7 +4,7 @@ description: "How EEG data and Jeju's solitude helped me reconcile with my past.
 pubDate: 2026-03-23
 author: "Laf"
 tags: ["meditation", "data", "healing"]
-heroImage: "../../assets/hero-jeju.jpg"
+heroImage: "hero-jeju.jpg"
 ---
 
 # The Forgiveness: How EEG Data and Strategic Distance Healed My Family Trauma

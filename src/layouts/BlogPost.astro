@@ -95,18 +95,69 @@ const relatedPosts = allPosts
 				margin-left: -1px;
 			}
 
-			/* 카드 스타일 */
+			/* 뉴스레터 스타일 */
+			.newsletter-box {
+				background-color: #f8fafc;
+				border-radius: 20px;
+				padding: 4rem 2rem;
+				margin: 3rem 0 5rem 0;
+				text-align: center;
+				border: 1px solid #edf2f7;
+			}
+			.newsletter-content h3 {
+				font-family: 'Playfair Display', serif;
+				font-size: 2.2rem;
+				margin-bottom: 1.2rem;
+				color: #1a202c;
+			}
+			.newsletter-content p {
+				color: #4a5568;
+				margin-bottom: 2.5rem;
+				line-height: 1.8;
+			}
+			.newsletter-form {
+				display: flex;
+				gap: 0.8rem;
+				max-width: 500px;
+				margin: 0 auto;
+				justify-content: center;
+			}
+			.newsletter-form input {
+				flex: 1;
+				padding: 1rem 1.2rem;
+				border: 1px solid #e2e8f0;
+				border-radius: 12px;
+				font-size: 1rem;
+			}
+			.newsletter-form button {
+				background-color: #333;
+				color: white;
+				border: none;
+				padding: 1rem 2rem;
+				border-radius: 12px;
+				font-weight: 700;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+			.newsletter-form button:hover {
+				background-color: var(--accent);
+				transform: translateY(-2px);
+			}
+
+			/* 저자 카드 스타일 */
 			.author-card {
 				background-color: var(--accent-bg);
 				border-radius: 12px;
 				padding: 2rem;
-				margin: 3rem 0;
+				margin: 0 0 4rem 0;
 				border: 1px solid #eee;
 			}
 			.author-card h3 {
 				margin-top: 0;
 				font-family: 'Playfair Display', serif;
 			}
+
+			/* 추천 글 스타일 */
 			.related-section {
 				margin-top: 4rem;
 				padding-top: 2rem;
@@ -143,6 +194,15 @@ const relatedPosts = allPosts
 				font-weight: bold;
 				color: var(--accent);
 			}
+			.newsletter-footer {
+				font-size: 0.85rem;
+				margin-top: 1.5rem !important;
+				color: #a0aec0;
+			}
+			@media (max-width: 600px) {
+				.newsletter-form { flex-direction: column; }
+				.newsletter-form button { width: 100%; }
+			}
 		</style>
 	</head>
 
@@ -178,8 +238,23 @@ const relatedPosts = allPosts
 							
 							<slot />
 							
-							<hr /> 
+							<hr />
 							
+							<section class="newsletter-box">
+								<div class="newsletter-content">
+									<h3>Join the Calm Day Journey</h3>
+									<p>
+										Get insights on <strong>data-driven mindfulness</strong> and inner peace delivered straight to your inbox. <br/> 
+										Be the first to hear about new stories and the upcoming <strong>'Calm Day'</strong> project.
+									</p>
+									<form class="newsletter-form">
+										<input type="email" placeholder="Your email address" required />
+										<button type="submit">Join the Journey</button>
+									</form>
+									<p class="newsletter-footer">No spam, just mindful stories from Jeju.</p>
+								</div>
+							</section>
+
 							<div class="author-card">
 								<div class="author-info">
 									<h3>About the Author: Laf</h3>
@@ -188,8 +263,8 @@ const relatedPosts = allPosts
 										I help people reconnect with their true selves using EEG data and mindfulness. 
 										Currently developing <strong>'Calm Day'</strong> to make self-love a daily habit.
 									</p>
-									<div class="author-links">
-										<a href="/about" class="cta-button">Read My Story</a>
+									<div class="author-links" style="margin-top: 1rem;">
+										<a href="/about" style="color: var(--accent); font-weight: bold; text-decoration: none;">Read My Story →</a>
 									</div>
 								</div>
 							</div>
@@ -208,26 +283,6 @@ const relatedPosts = allPosts
 									))}
 								</div>
 							</section>
-
-
-      <section class="newsletter-box">
-          <div class="newsletter-content">
-              <h3>Join the Calm Day Journey</h3>
-              <p>
-                Get insights on <strong>data-driven mindfulness</strong> and inner peace delivered straight to your inbox. <br/> 
-                Be the first to hear about new stories and the upcoming <strong>'Calm Day'</strong> project.
-              </p>
-              
-              <form class="newsletter-form">
-                  <input type="email" placeholder="Your email address" required />
-                  <button type="submit">Join the Journey</button>
-              </form>
-              <p class="newsletter-footer">No spam, just mindful stories from Jeju.</p>
-          </div>
-      </section>
-
-  </article> </div>
-
 						</div>
 					</article>
 				</div>
@@ -235,76 +290,4 @@ const relatedPosts = allPosts
 		</main>
 		<Footer />
 	</body>
-
-<style>
-    /* --- 뉴스레터 섹션 최종 디자인 --- */
-    .newsletter-box {
-        background-color: #f8fafc;
-        border-radius: 20px;
-        padding: 4rem 2rem;
-        margin: 5rem 0;
-        text-align: center;
-        border: 1px solid #edf2f7;
-    }
-    .newsletter-content h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.2rem;
-        margin-bottom: 1.2rem;
-        color: #1a202c;
-    }
-    .newsletter-content p {
-        color: #4a5568;
-        margin-bottom: 2.5rem;
-        line-height: 1.8;
-    }
-    .newsletter-form {
-        display: flex;
-        gap: 0.8rem;
-        max-width: 500px;
-        margin: 0 auto;
-        justify-content: center;
-    }
-    .newsletter-form input {
-        flex: 1;
-        padding: 1rem 1.2rem;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        font-size: 1rem;
-        transition: border-color 0.2s;
-    }
-    .newsletter-form input:focus {
-        border-color: var(--accent);
-        outline: none;
-    }
-    .newsletter-form button {
-        background-color: #333;
-        color: white;
-        border: none;
-        padding: 1rem 2rem;
-        border-radius: 12px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-    }
-    .newsletter-form button:hover {
-        background-color: var(--accent);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .newsletter-footer {
-        font-size: 0.85rem;
-        margin-top: 1.5rem !important;
-        color: #a0aec0;
-    }
-    @media (max-width: 600px) {
-        .newsletter-form {
-            flex-direction: column;
-        }
-        .newsletter-form button {
-            width: 100%;
-        }
-    }
-</style>
-
 </html>

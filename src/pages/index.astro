@@ -4,8 +4,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
 
-// 블로그 글을 날짜 순으로 가져옵니다.
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
@@ -22,22 +22,52 @@ const posts = (await getCollection('blog')).sort(
 				margin: auto;
 				padding: 3em 1em;
 			}
+			/* ⭐️ 메인 히어로 섹션 스타일 */
 			.hero-section {
 				text-align: center;
-				margin-bottom: 4rem;
-				padding: 2rem;
-				background: #f9f9f9;
-				border-radius: 12px;
+				padding: 5rem 0 8rem 0;
+				background: linear-gradient(to bottom, #f9fbfd, #ffffff);
 			}
 			.hero-section h1 {
-				font-size: 2.5rem;
-				color: #333;
+				font-family: 'Playfair Display', serif;
+				font-size: 3.5rem;
+				margin-bottom: 1.5rem;
+				line-height: 1.2;
 			}
-			.hero-section p {
-				font-size: 1.2rem;
-				color: #666;
+			.hero-subtitle {
+				font-size: 1.25rem;
+				color: var(--gray);
+				max-width: 600px;
+				margin: 0 auto 2.5rem auto;
 				line-height: 1.6;
 			}
+			.cta-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1rem;
+			}
+			.btn-primary {
+				background-color: var(--accent);
+				color: white;
+				padding: 0.8rem 1.5rem;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: bold;
+				transition: transform 0.2s;
+			}
+			.btn-secondary {
+				border: 1px solid var(--accent);
+				color: var(--accent);
+				padding: 0.8rem 1.5rem;
+				border-radius: 8px;
+				text-decoration: none;
+				transition: background 0.2s;
+			}
+			.btn-primary:hover, .btn-secondary:hover {
+				transform: translateY(-3px);
+			}
+
+			/* 글 목록 그리드 스타일 */
 			ul {
 				display: flex;
 				flex-wrap: wrap;
@@ -53,24 +83,33 @@ const posts = (await getCollection('blog')).sort(
 				text-decoration: none;
 				transition: 0.2s ease;
 			}
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			ul li a {
+				display: block;
+			}
 			.title {
 				margin: 0;
 				color: rgb(var(--black));
-				line-height: 1.2;
-				font-size: 1.5rem;
+				line-height: 1;
 			}
 			.date {
 				margin: 0;
 				color: rgb(var(--gray));
 			}
-			ul li a:hover h4 {
+			ul li a:hover h4,
+			ul li a:hover .date {
 				color: rgb(var(--accent));
 			}
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
+			}
 			@media (max-width: 720px) {
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
+				ul { gap: 0.5em; }
+				ul li { width: 100%; text-align: center; }
+				.hero-section h1 { font-size: 2.5rem; }
 			}
 		</style>
 	</head>
@@ -78,26 +117,29 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main>
 			<section class="hero-section">
-				<h1>Reconnect with Your Self</h1>
-				<p>
-					From isolation to connection. <br />
-					Exploring the path of recovery through <strong>EEG Data, Meditation, and Jeju's Solitude.</strong>
+				<h1>I liberate others <br />through my own freedom.</h1>
+				<p class="hero-subtitle">
+					기획자 라프입니다. 데이터와 마음챙김을 통해 <br />
+					사람들이 자신만의 고유한 서사를 발견하고, <br />
+					삶의 주인이 될 수 있도록 돕습니다.
 				</p>
+				<div class="cta-buttons">
+					<a href="/about" class="btn-primary">My Story</a>
+					<a href="#posts" class="btn-secondary">Read Blog</a>
+				</div>
 			</section>
 
-			<section>
+			<section id="posts">
+				<h3 style="margin-bottom: 2rem; font-family: 'Playfair Display', serif;">Latest Journals</h3>
 				<ul>
 					{
 						posts.map((post) => (
 							<li>
 								<a href={`/blog/${post.id}/`}>
+									<img width={720} height={360} src={post.data.heroImage} alt="" />
 									<h4 class="title">{post.data.title}</h4>
 									<p class="date">
-										{post.data.pubDate.toLocaleDateString('en-us', {
-											year: 'numeric',
-											month: 'short',
-											day: 'numeric',
-										})}
+										<FormattedDate date={post.data.pubDate} />
 									</p>
 								</a>
 							</li>
